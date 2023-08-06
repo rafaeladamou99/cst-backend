@@ -97,7 +97,6 @@ export const MaximumDegreeV2 = (
       .edges.sort((a, b) => a.weight - b.weight)
     sortPQ()
     PQ = [...newNodes, ...PQ]
-    console.log(PQ)
     PQ.some((e, index) => {
       if (
         degreePerNode[e.to] < maxDegree &&
