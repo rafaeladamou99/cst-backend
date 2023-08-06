@@ -42,7 +42,6 @@ export const MaximumDepth = (
     const filteredEdges = graph[i]
       .map((weight, index) => {
         if (weight > 0) {
-          // create edge groups here instead of down there making loops when you can avoid them.
           const edge = { from: i, to: index, weight: weight }
           const unique = edgesGroups[i].findIndex(
             (e) =>
@@ -54,7 +53,6 @@ export const MaximumDepth = (
             edgesGroups[i].push(edge)
             edgesGroups[index].push(edge)
           }
-          // ends here
           return { index, weight }
         }
       })
@@ -272,7 +270,6 @@ export const MaximumDepth = (
               1 <
               maxDepth
           ) {
-            // THINK
             edgesGroups[toBeConnectedNodeIndex] = edgesGroups[
               toBeConnectedNodeIndex
             ].filter((e) => JSON.stringify(e) !== JSON.stringify(edge))
@@ -303,8 +300,6 @@ export const MaximumDepth = (
               resetNodeLongestParths()
               break
             }
-          } else {
-            //   return false
           }
         }
       }

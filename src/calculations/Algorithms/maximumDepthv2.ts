@@ -1,3 +1,5 @@
+import { MaximumDepth } from './maximumDepth'
+
 type Edge = { from: number; to: number; weight: number }
 
 export const MaximumDepthV2 = (
@@ -77,6 +79,11 @@ export const MaximumDepthV2 = (
   let startingNode2: number = -1
   let maxConnectionsAvgWeight = Number.MAX_SAFE_INTEGER
   let maxConnections = 0
+  let PQ: Edge[] = []
+  const spanningTree: Edge[] = []
+  const visited = new Set()
+  const leaves = new Set()
+  const branches = new Set()
 
   if (maxDepth > 2) {
     for (let i = 0; i < nodesAmount - 1; i++) {
@@ -116,13 +123,9 @@ export const MaximumDepthV2 = (
         }
       }
     }
+  } else {
+    return MaximumDepth(graph, maxDepth)
   }
-
-  let PQ: Edge[] = []
-  const spanningTree: Edge[] = []
-  const visited = new Set()
-  const leaves = new Set()
-  const branches = new Set()
 
   // adds edges to the PQ
   const addToPQ = (nodes: number[] | number) => {

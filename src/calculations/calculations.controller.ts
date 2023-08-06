@@ -78,22 +78,6 @@ export class CalculationsController {
     return this.calculationsService.getSingleCalculation(token, calcId)
   }
 
-  // @Patch(':id')
-  // async updateCalculation(
-  //   @Param('id') calcId: string,
-  //   @Body('title') calcTitle: string,
-  //   @Body('description') calcDesc: string,
-  //   @Body('price') calcPrice: number
-  // ) {
-  //   await this.calculationsService.updateCalculation(
-  //     calcId,
-  //     calcTitle,
-  //     calcDesc,
-  //     calcPrice
-  //   )
-  //   return null
-  // }
-
   @Delete(':id')
   async removeCalculation(@Param('id') calcId: string) {
     await this.calculationsService.deleteCalculation(calcId)

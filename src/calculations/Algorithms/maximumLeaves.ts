@@ -5,10 +5,6 @@ export const MaximumLeaves = (
   graph,
   maxLeaves
 ): [number[][], number, boolean] => {
-  // Create a union-find data structure to keep track of connected components
-
-  const groupsOfConnectedVertices = []
-
   // FIX THIS. NO NEED TO CALL TWICE
   const checkToMerge = (vertexA, vertexB, checkOnly = false) => {
     if (vertexA === vertexB) {
@@ -88,6 +84,19 @@ export const MaximumLeaves = (
     }
     return [matrix, weigthSum, edgeCount + 1 === graphSize]
   }
+  const countLeaves = (arr) => {
+    let leaves = 2
+    arr.forEach((element) => {
+      if (element > 2) {
+        leaves += element - 2
+      }
+    })
+    return leaves
+  }
+
+  // Create a union-find data structure to keep track of connected components
+
+  const groupsOfConnectedVertices = []
 
   // Create an array to store the edges of the minimum spanning tree
   const minimumSpanningTree = []
@@ -98,8 +107,6 @@ export const MaximumLeaves = (
   for (let i = 0; i < graph.length; i++) {
     const nodesEdgesCount = graph[i].filter((e) => e !== 0).length
     if (nodesEdgesCount === 0) {
-      // BREAKKKKKKKK
-      // return 'Graph is disconnected'
       return [[], 0, false]
     } else if (nodesEdgesCount === 1) {
       const index = graph[i].findIndex((e) => e !== 0)
@@ -114,16 +121,6 @@ export const MaximumLeaves = (
     }
   }
   edges.sort((a, b) => a.weight - b.weight)
-
-  const countLeaves = (arr) => {
-    let leaves = 2
-    arr.forEach((element) => {
-      if (element > 2) {
-        leaves += element - 2
-      }
-    })
-    return leaves
-  }
 
   if (countLeaves(currentLeaves) > maxLeaves) {
     // return 'Graph leaves more than the constraint'
